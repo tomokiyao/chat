@@ -1,0 +1,34 @@
+
+
+<div class="containar">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <h1>Followers List</h1>
+<table class="table">
+  <thead>
+    <th>image</th>
+    <th>name</th>
+    <th>introduction</th>
+  </thead>
+  <% @followers.each do |user|  %>
+    <tr>
+      <td>
+        <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "", fallback: "no_image.jpg", :size => "40x40" %>
+      </td>
+      <td><%= user.name %></td>
+      <td><%=user.introduction %></td>
+      <td>
+        <% if current_user != user %>
+          <% if user.following_by?(current_user) %>
+            <%= link_to "unfollow",user_relationships_path(user),method: :delete, class: "btn btn-danger"%>
+          <% else %>
+            <%= link_to "follow",user_relationships_path(user),method: :post, class: "btn btn-primary" %>
+          <% end %>
+        <% end%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>
+</div>
+</div>

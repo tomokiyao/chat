@@ -1,0 +1,45 @@
+	<header class="navbar navbar-inverse">
+		<div class="containar">
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+					<nav class="nav navbar-nav navbar-left">
+						<span>Bookers</span>
+					</nav>
+					<nav>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<%=link_to " Home", tops_index_path, class: "glyphicon glyphicon-home" %>
+							</li>
+							<li>
+								<%=link_to " About", tops_show_path, class: "glyphicon glyphicon-user" %>
+							</li>
+							<li>
+								<%=link_to " Sign up", new_user_registration_path, class: "glyphicon glyphicon-edit" %>
+							</li>
+							<li>
+								<%=link_to " Login", new_user_session_path, class: "glyphicon glyphicon-log-in" %>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="containar">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<h1>Welcome to
+				<span class="glyphicon glyphicon-book"><strong>Bookers!</strong></span></h1>
+		</div>
+	</div>
+
+		<footer>
+	<div class="containar">
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-9">
+				<p>CopyRight Infratop.inc</p>
+			</div>
+		</div>
+	</div>
+</footer>

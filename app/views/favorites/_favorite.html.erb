@@ -1,0 +1,12 @@
+	<% if post_book.favorited_by?(current_user) %>
+    <%= link_to post_book_favorites_path(post_book), method: :delete, id: "like-button" do %>
+      <div class="fa fa-heart fa-lg" aria-hidden="true" style="color: red;"></div>
+      <% end %>
+      <%= post_book.favorites.count %>
+<% else %>
+    <%= link_to post_book_favorites_path(post_book), method: :post, id: "like-button" do %>
+      <div class="fa fa-heart-o fa-lg" aria-hidden="true"></div>
+      <% end %>
+      <%= post_book.favorites.count %>
+
+<% end %>

@@ -1,0 +1,28 @@
+
+<h2 class="fa fa-comment fa-lg">Comment</h2>
+    <table class="table">
+         <% @post_book.post_comments.each do |post_comment| %>
+        <tbody>
+            <td>
+                <%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "", fallback: "no_image.jpg", :size => "40x40" %>
+                <br>
+                <%=link_to user_path(post_comment.user) do %>
+                <%= post_comment.user.name %>
+                <% end %>
+            </td>
+            <td><%= post_comment.comment %></td>
+            <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+        </tbody>
+        <% end %>
+    </table>
+
+
+
+<%= form_for [@post_book, @post_comment] do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.text_field :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        </div>
+    </div>
+    <%= f.submit "Transmit", class: "btn btn-primary pull-right" %>
+<% end %>

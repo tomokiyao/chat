@@ -1,0 +1,94 @@
+
+
+
+	<div class="containar">
+		<div class="row">
+			<div class="col-xs-2 col-xs-offset-1">
+				<h1>User info</h1>
+					<%= attachment_image_tag @post_book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+				<table class="table">
+					<tbody>
+						<tr></tr>
+						<tr>
+							<td>name</td>
+							<td><%=@post_book.user.name%></td>
+						</tr>
+						<tr>
+							<td>introduction</td>
+							<td><%=@post_book.user.introduction%></td>
+						</tr>
+					</tbody>
+				</table>
+					<div class="row">
+						<% if @post_book.user.id == current_user.id %>
+							<%=link_to "", edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+						<% end %>
+					</div>
+
+
+				<h2>New Book</h2>
+					<%= form_for(@book_new) do |f| %>
+				<div class="field row">
+					<label for="book_name">Title</label>
+						<%= f.text_field :book_name, class: "col-xs-12" %>
+				</div>
+				<div class="field row">
+					<label for="caption">Opinion</label>
+						<%= f.text_area :caption, class: "col-xs-12" %>
+				</div>
+				<br>
+				<div class="action row">
+					<%= f.submit "Create Book", class: "col-xs-12 btn btn-primary"%>
+				</div>
+			<% end %>
+		</div>
+
+
+		<div class="col-xs-8">
+			<h2>Book detail</h2>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>
+								<%= attachment_image_tag @post_book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "", fallback: "no_image.jpg", :size => "40x40" %>
+							<br>
+							<%=link_to user_path(@post_book.user)  do %>
+							<%=@post_book.user.name %>
+							<% end %>
+							</td>
+							<td>
+								<%= @post_book.book_name %>
+							</td>
+							<td>
+								<%= @post_book.caption %>
+							</td>
+							<% if @post_book.user == current_user %>
+								<td>
+									<%=link_to "Edit", edit_post_book_path(@post_book), class: "btn-sm btn-success" %>
+								</td>
+								<td>
+									<%=link_to "Destoroy", post_book_path(@post_book), method: :delete, class: "btn-sm btn-danger" %>
+								</td>
+								<% end %>
+								<td>
+									<div class="fa fa-comment fa-lg"></div>
+									<%= @post_book.post_comments.count %>
+								</td>
+						</tr>
+					</tbody>
+				</table>
+				<%= render 'post_comments/comment', post_book: @post_book %>
+		</div>
+	</div>
+</div>
+
+
+<footer>
+	<div class="containar">
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-9">
+				<p>CopyRight Infratop.inc</p>
+			</div>
+		</div>
+	</div>
+</footer>
